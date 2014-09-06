@@ -1,2 +1,2 @@
-ofMinimalProject
+HeartBeatController
 ================
