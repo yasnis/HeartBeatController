@@ -2,8 +2,11 @@
 #include "ofxSimpleSerial.h"
 #include <vector>
 #include "ofxArtnet.h"
+#include "ofxOsc.h"
+#include "ofxLeapMotion2.h"
 
 #define MAX_BEAT_NUM 256
+#define SYNC_TIME 70
 
 class ofApp : public ofBaseApp{
     
@@ -34,6 +37,20 @@ class ofApp : public ofBaseApp{
     ofxArtnet artnet;
     unsigned char dmxData[512];
     
+    //
+    int brightness;
+    
+    //OSC
+    ofxOscSender sender;
+    
+    //Leap Motion
+    ofxLeapMotion leap;
+    ofxLeapMotionSimpleHand hand;
+    
+    //Mute
+    int mute = 1;
+    
+    
     //--------------------------------------------------------------
     void setup(){
         ofBackground(0);
@@ -56,6 +73,15 @@ class ofApp : public ofBaseApp{
             dmxData[i] = 0;
         }
         
+        brightness = 0;
+        
+        //Sender
+//        sender.setup("localhost", 3331);
+//        sender.setup("192.168.11.6", 3331);
+        sender.setup("10.20.24.101", 3331);
+        
+        //Leap
+        leap.open();
     }
     
     void setupSerial() {
@@ -73,14 +99,50 @@ class ofApp : public ofBaseApp{
     
     //--------------------------------------------------------------
     void update(){
+        if(brightness > 0){
+            brightness-=4;
+        }
+        
         updateBeatValue();
         updateBPM();
         updateArtnet();
+//        updateLeapMotion();
+        
+//        if (mute == 0) return;
+        ofxOscMessage msg1,msg2;
+        msg1.setAddress("/Ch1/");
+        msg1.addIntArg(beat_value_a[0]*mute);
+        msg1.addIntArg(bpm_average_a*mute);
+        sender.sendMessage(msg1);
+        msg2.setAddress("/Ch2/");
+        msg2.addIntArg(beat_value_b[0]*mute);
+        msg2.addIntArg(bpm_average_b*mute);
+        sender.sendMessage(msg2);
+    }
+    
+    void updateLeapMotion() {
+        vector<ofxLeapMotionSimpleHand> hands;
+        hands = leap.getSimpleHands();
+        
+        if( leap.isFrameNew()){
+            if(hands.size() ){
+                mute = 0;
+            }else{
+                mute = 1;
+            }
+        }
+        
+        cout << "updateLeapMotion() : " << mute << ", hand : " << hands.size() << endl;
     }
     
     void updateArtnet() {
+//        cout << "updateArtnet : " << brightness << endl;
+//        return;
         // 1ch
-        dmxData[0] = 255*beat_value_a[0]/4096;
+//        dmxData[0] = 255*beat_diff[0]/4096;
+//        dmxData[0] = max(brightness,100*(beat_value_a[7]+beat_value_b[7])/4096);
+        dmxData[0] = max(brightness,0)*mute;
+//        dmxData[0] = 100;
         
         artnet.sendDmx("10.20.24.22", dmxData, 512);
     }
@@ -92,6 +154,9 @@ class ofApp : public ofBaseApp{
         //a
         min = *min_element(beat_value_a.begin(), beat_value_a.end());
         max = *max_element(beat_value_a.begin(), beat_value_a.end())-min;
+        if(max > 100000){
+            max = 0;
+        }
         norm = float(beat_value_a[0])/float(max);
         peak_a.insert(peak_a.begin(), norm);
         if(peak_a.size() > 16){
@@ -110,6 +175,11 @@ class ofApp : public ofBaseApp{
                 }
                 bpm_average_a = accumulate(bpm_a.begin(), bpm_a.end(), 0)/bpm_a.size();
                 old_peaktime_a = current;
+                
+                if(abs(old_peaktime_a-old_peaktime_b) < SYNC_TIME){
+                    cout << abs(old_peaktime_a-old_peaktime_b) << endl;
+                    checkSync();
+                }
             }
         }
         
@@ -134,22 +204,53 @@ class ofApp : public ofBaseApp{
                 }
                 bpm_average_b = accumulate(bpm_b.begin(), bpm_b.end(), 0)/bpm_b.size();
                 old_peaktime_b = current;
+                
+                if(abs(old_peaktime_a-old_peaktime_b) < SYNC_TIME){
+                    cout << abs(old_peaktime_a-old_peaktime_b) << endl;
+                    checkSync();
+                }
             }
         }
         
         
+    }
+    void checkSync(){
+//        cout << abs(old_peaktime_a-old_peaktime_b) << endl;
+//        if(abs(old_peaktime_a-old_peaktime_b) > SYNC_TIME){
+//            return;
+//        }
+        cout << "sync" << endl;
+        if(mute==0)return;
+        
+        
+        
+        
+        brightness += 255;
+//        return;
+        
+        ofxOscMessage msg;
+        msg.setAddress("/sync");
+        msg.addIntArg(bpm_average_a);
+        msg.addIntArg(bpm_average_b);
+        sender.sendMessage(msg);
     }
     
     void updateBeatValue(){
         beat_value_a.insert(beat_value_a.begin(), currentPeak[0]);
         beat_value_b.insert(beat_value_b.begin(), currentPeak[1]);
         
+//        cout << beat_value_a[0] << ", "  << beat_value_b[0] << endl;
+        
+        beat_diff.insert(beat_diff.begin(), (1024-abs(beat_value_a[0]-beat_value_b[0]))*float(beat_value_a[0])/1024.0*float(beat_value_b[0])/1024.0);
         
         if(beat_value_a.size() > MAX_BEAT_NUM) {
             beat_value_a.resize(MAX_BEAT_NUM);
         }
         if(beat_value_b.size() > MAX_BEAT_NUM) {
             beat_value_b.resize(MAX_BEAT_NUM);
+        }
+        if(beat_diff.size() > MAX_BEAT_NUM) {
+            beat_diff.resize(MAX_BEAT_NUM);
         }
         
     }
@@ -220,25 +321,31 @@ class ofApp : public ofBaseApp{
     
     //--------------------------------------------------------------
     void draw(){
-        ofSetColor(255);
-        ofDrawBitmapString("A : "+ofToString(beat_value_a[0]) + "\nB : "+ofToString(beat_value_b[0]), 100, 100);
+        ofSetColor(255,255,255,100);
+        ofSetLineWidth(1);
+        ofLine(0, ofGetHeight()*7/8, ofGetWidth(), ofGetHeight()*7/8);
+        ofLine(0, ofGetHeight()*7/8-ofGetHeight()/4*3, ofGetWidth(), ofGetHeight()*7/8-ofGetHeight()/4*3);
+//        ofDrawBitmapString("A : "+ofToString(beat_value_a[0]) + "\nB : "+ofToString(beat_value_b[0]), 100, 100);
         
+//        ofSetLineWidth(5);
         drawWave();
         
         ofSetColor(255);
         
         font.drawString(ofToString(bpm_average_a), 100, ofGetHeight()-100);
         font.drawString(ofToString(bpm_average_b), ofGetWidth()-450, ofGetHeight()-100);
+        
+        
     }
     
     void drawWave() {
+        ofSetLineWidth(3);
         int waveheight = ofGetHeight()/4*3;
         int step = ofGetWidth()/MAX_BEAT_NUM;
         int oldX = ofGetWidth();
         int oldY = ofGetHeight()/2;
         
         ofNoFill();
-        ofSetLineWidth(5);
         ofSetColor(255, 0, 0);
         for (int i = 0; i < beat_value_a.size(); i++) {
             int newY = (ofGetHeight()*7/8)-(waveheight*beat_value_a[i])/1024;
@@ -254,6 +361,17 @@ class ofApp : public ofBaseApp{
         ofSetColor(0, 255, 0);
         for (int i = 0; i < beat_value_b.size(); i++) {
             int newY = (ofGetHeight()*7/8)-(waveheight*beat_value_b[i])/1024;
+            int newX = oldX-step;
+            ofLine(oldX, oldY, newX, newY);
+            oldX -= step;
+            oldY = newY;
+        }
+        
+        oldX = ofGetWidth();
+        oldY = ofGetHeight()/2;
+        ofSetColor(0, 0, 255);
+        for (int i = 0; i < beat_diff.size(); i++) {
+            int newY = (ofGetHeight()*7/8)-(waveheight*beat_diff[i])/1024;
             int newX = oldX-step;
             ofLine(oldX, oldY, newX, newY);
             oldX -= step;
@@ -285,7 +403,23 @@ class ofApp : public ofBaseApp{
     void keyPressed(int key){
         if(key == 'f'){
             ofToggleFullscreen();
+        }else if(key == ' ') {
+            if(mute == 0){
+                mute = 1;
+            }else {
+                mute = 0;
+            }
+            cout << mute << endl;
         }
+    }
+    
+    void exit() {
+        dmxData[0] = 0;
+        
+        artnet.sendDmx("10.20.24.22", dmxData, 512);
+        
+        
+        leap.close();
     }
 };
 

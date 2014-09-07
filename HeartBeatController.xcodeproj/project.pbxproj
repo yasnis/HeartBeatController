@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		C8818DDB19BAE41A008BB355 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DB419BAE41A008BB355 /* ofxOscBundle.cpp */; };
+		C8818DDC19BAE41A008BB355 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DB619BAE41A008BB355 /* ofxOscMessage.cpp */; };
+		C8818DDD19BAE41A008BB355 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DB819BAE41A008BB355 /* ofxOscParameterSync.cpp */; };
+		C8818DDE19BAE41A008BB355 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DBA19BAE41A008BB355 /* ofxOscReceiver.cpp */; };
+		C8818DDF19BAE41A008BB355 /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DBC19BAE41A008BB355 /* ofxOscSender.cpp */; };
+		C8818DE019BAE41A008BB355 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DC219BAE41A008BB355 /* IpEndpointName.cpp */; };
+		C8818DE119BAE41A008BB355 /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DC719BAE41A008BB355 /* NetworkingUtils.cpp */; };
+		C8818DE219BAE41A008BB355 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DC819BAE41A008BB355 /* UdpSocket.cpp */; };
+		C8818DE319BAE41A008BB355 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DD219BAE41A008BB355 /* OscOutboundPacketStream.cpp */; };
+		C8818DE419BAE41A008BB355 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DD519BAE41A008BB355 /* OscPrintReceivedElements.cpp */; };
+		C8818DE519BAE41A008BB355 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DD719BAE41A008BB355 /* OscReceivedElements.cpp */; };
+		C8818DE619BAE41A008BB355 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8818DD919BAE41A008BB355 /* OscTypes.cpp */; };
 		C8D15D1319BAA4D80078052B /* ofxSimpleSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D1119BAA4D80078052B /* ofxSimpleSerial.cpp */; };
 		C8D15D2C19BAC8080078052B /* ofxArtnet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D1819BAC8080078052B /* ofxArtnet.cpp */; };
 		C8D15D2D19BAC8080078052B /* artnet.c in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D2619BAC8080078052B /* artnet.c */; };
@@ -16,6 +28,10 @@
 		C8D15D3019BAC8080078052B /* receive.c in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D2919BAC8080078052B /* receive.c */; };
 		C8D15D3119BAC8080078052B /* tod.c in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D2A19BAC8080078052B /* tod.c */; };
 		C8D15D3219BAC8080078052B /* transmit.c in Sources */ = {isa = PBXBuildFile; fileRef = C8D15D2B19BAC8080078052B /* transmit.c */; };
+		C8DFED2919BC40E300470EA1 /* libLeap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DFED0719BC40E300470EA1 /* libLeap.dylib */; };
+		C8DFED2A19BC40E300470EA1 /* Leap.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DFED0A19BC40E300470EA1 /* Leap.lib */; };
+		C8DFED2B19BC40E300470EA1 /* Leapd.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DFED0C19BC40E300470EA1 /* Leapd.lib */; };
+		C8DFED2C19BC40E300470EA1 /* ofxLeapMotion2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8DFED1519BC40E300470EA1 /* ofxLeapMotion2.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -68,6 +84,38 @@
 
 /* Begin PBXFileReference section */
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		C8818DB219BAE41A008BB355 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
+		C8818DB319BAE41A008BB355 /* ofxOscArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
+		C8818DB419BAE41A008BB355 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
+		C8818DB519BAE41A008BB355 /* ofxOscBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscBundle.h; sourceTree = "<group>"; };
+		C8818DB619BAE41A008BB355 /* ofxOscMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscMessage.cpp; sourceTree = "<group>"; };
+		C8818DB719BAE41A008BB355 /* ofxOscMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscMessage.h; sourceTree = "<group>"; };
+		C8818DB819BAE41A008BB355 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscParameterSync.cpp; sourceTree = "<group>"; };
+		C8818DB919BAE41A008BB355 /* ofxOscParameterSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscParameterSync.h; sourceTree = "<group>"; };
+		C8818DBA19BAE41A008BB355 /* ofxOscReceiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscReceiver.cpp; sourceTree = "<group>"; };
+		C8818DBB19BAE41A008BB355 /* ofxOscReceiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscReceiver.h; sourceTree = "<group>"; };
+		C8818DBC19BAE41A008BB355 /* ofxOscSender.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscSender.cpp; sourceTree = "<group>"; };
+		C8818DBD19BAE41A008BB355 /* ofxOscSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscSender.h; sourceTree = "<group>"; };
+		C8818DC219BAE41A008BB355 /* IpEndpointName.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IpEndpointName.cpp; sourceTree = "<group>"; };
+		C8818DC319BAE41A008BB355 /* IpEndpointName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IpEndpointName.h; sourceTree = "<group>"; };
+		C8818DC419BAE41A008BB355 /* NetworkingUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingUtils.h; sourceTree = "<group>"; };
+		C8818DC519BAE41A008BB355 /* PacketListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PacketListener.h; sourceTree = "<group>"; };
+		C8818DC719BAE41A008BB355 /* NetworkingUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkingUtils.cpp; sourceTree = "<group>"; };
+		C8818DC819BAE41A008BB355 /* UdpSocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UdpSocket.cpp; sourceTree = "<group>"; };
+		C8818DC919BAE41A008BB355 /* TimerListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerListener.h; sourceTree = "<group>"; };
+		C8818DCA19BAE41A008BB355 /* UdpSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UdpSocket.h; sourceTree = "<group>"; };
+		C8818DCF19BAE41A008BB355 /* MessageMappingOscPacketListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageMappingOscPacketListener.h; sourceTree = "<group>"; };
+		C8818DD019BAE41A008BB355 /* OscException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscException.h; sourceTree = "<group>"; };
+		C8818DD119BAE41A008BB355 /* OscHostEndianness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscHostEndianness.h; sourceTree = "<group>"; };
+		C8818DD219BAE41A008BB355 /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscOutboundPacketStream.cpp; sourceTree = "<group>"; };
+		C8818DD319BAE41A008BB355 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscOutboundPacketStream.h; sourceTree = "<group>"; };
+		C8818DD419BAE41A008BB355 /* OscPacketListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscPacketListener.h; sourceTree = "<group>"; };
+		C8818DD519BAE41A008BB355 /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscPrintReceivedElements.cpp; sourceTree = "<group>"; };
+		C8818DD619BAE41A008BB355 /* OscPrintReceivedElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscPrintReceivedElements.h; sourceTree = "<group>"; };
+		C8818DD719BAE41A008BB355 /* OscReceivedElements.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscReceivedElements.cpp; sourceTree = "<group>"; };
+		C8818DD819BAE41A008BB355 /* OscReceivedElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
+		C8818DD919BAE41A008BB355 /* OscTypes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
+		C8818DDA19BAE41A008BB355 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
 		C8D15D1119BAA4D80078052B /* ofxSimpleSerial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleSerial.cpp; sourceTree = "<group>"; };
 		C8D15D1219BAA4D80078052B /* ofxSimpleSerial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSimpleSerial.h; sourceTree = "<group>"; };
 		C8D15D1819BAC8080078052B /* ofxArtnet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxArtnet.cpp; sourceTree = "<group>"; };
@@ -86,6 +134,20 @@
 		C8D15D2919BAC8080078052B /* receive.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = receive.c; sourceTree = "<group>"; };
 		C8D15D2A19BAC8080078052B /* tod.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tod.c; sourceTree = "<group>"; };
 		C8D15D2B19BAC8080078052B /* transmit.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = transmit.c; sourceTree = "<group>"; };
+		C8DFED0119BC40E300470EA1 /* Leap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leap.h; sourceTree = "<group>"; };
+		C8DFED0219BC40E300470EA1 /* LeapMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeapMath.h; sourceTree = "<group>"; };
+		C8DFED0519BC40E300470EA1 /* libLeap.so */ = {isa = PBXFileReference; lastKnownFileType = file; path = libLeap.so; sourceTree = "<group>"; };
+		C8DFED0719BC40E300470EA1 /* libLeap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libLeap.dylib; sourceTree = "<group>"; };
+		C8DFED0919BC40E300470EA1 /* Leap.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = Leap.dll; sourceTree = "<group>"; };
+		C8DFED0A19BC40E300470EA1 /* Leap.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Leap.lib; sourceTree = "<group>"; };
+		C8DFED0B19BC40E300470EA1 /* Leapd.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = Leapd.dll; sourceTree = "<group>"; };
+		C8DFED0C19BC40E300470EA1 /* Leapd.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Leapd.lib; sourceTree = "<group>"; };
+		C8DFED0D19BC40E300470EA1 /* msvcp120.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = msvcp120.dll; sourceTree = "<group>"; };
+		C8DFED0E19BC40E300470EA1 /* msvcp120d.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = msvcp120d.dll; sourceTree = "<group>"; };
+		C8DFED0F19BC40E300470EA1 /* msvcr120.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = msvcr120.dll; sourceTree = "<group>"; };
+		C8DFED1019BC40E300470EA1 /* msvcr120d.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = msvcr120d.dll; sourceTree = "<group>"; };
+		C8DFED1519BC40E300470EA1 /* ofxLeapMotion2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLeapMotion2.cpp; sourceTree = "<group>"; };
+		C8DFED1619BC40E300470EA1 /* ofxLeapMotion2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLeapMotion2.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -114,11 +176,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8DFED2919BC40E300470EA1 /* libLeap.dylib in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
+				C8DFED2B19BC40E300470EA1 /* Leapd.lib in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
+				C8DFED2A19BC40E300470EA1 /* Leap.lib in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
@@ -140,6 +205,8 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				C8DFEC6119BC40E100470EA1 /* ofxLeapMotion2 */,
+				C8818DB019BAE41A008BB355 /* ofxOsc */,
 				C8D15D1619BAC8070078052B /* ofxArtnet */,
 				C8D15D0F19BAA4D80078052B /* ofxSimpleSerial */,
 			);
@@ -174,6 +241,103 @@
 				BBAB23BE13894E4700AA2426 /* GLUT.framework */,
 			);
 			name = "3rd party frameworks";
+			sourceTree = "<group>";
+		};
+		C8818DB019BAE41A008BB355 /* ofxOsc */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DB119BAE41A008BB355 /* src */,
+				C8818DBE19BAE41A008BB355 /* libs */,
+			);
+			name = ofxOsc;
+			sourceTree = "<group>";
+		};
+		C8818DB119BAE41A008BB355 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DB219BAE41A008BB355 /* ofxOsc.h */,
+				C8818DB319BAE41A008BB355 /* ofxOscArg.h */,
+				C8818DB419BAE41A008BB355 /* ofxOscBundle.cpp */,
+				C8818DB519BAE41A008BB355 /* ofxOscBundle.h */,
+				C8818DB619BAE41A008BB355 /* ofxOscMessage.cpp */,
+				C8818DB719BAE41A008BB355 /* ofxOscMessage.h */,
+				C8818DB819BAE41A008BB355 /* ofxOscParameterSync.cpp */,
+				C8818DB919BAE41A008BB355 /* ofxOscParameterSync.h */,
+				C8818DBA19BAE41A008BB355 /* ofxOscReceiver.cpp */,
+				C8818DBB19BAE41A008BB355 /* ofxOscReceiver.h */,
+				C8818DBC19BAE41A008BB355 /* ofxOscSender.cpp */,
+				C8818DBD19BAE41A008BB355 /* ofxOscSender.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxOsc/src;
+			sourceTree = "<group>";
+		};
+		C8818DBE19BAE41A008BB355 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DBF19BAE41A008BB355 /* oscpack */,
+			);
+			name = libs;
+			path = ../../../addons/ofxOsc/libs;
+			sourceTree = "<group>";
+		};
+		C8818DBF19BAE41A008BB355 /* oscpack */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DC019BAE41A008BB355 /* src */,
+			);
+			path = oscpack;
+			sourceTree = "<group>";
+		};
+		C8818DC019BAE41A008BB355 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DC119BAE41A008BB355 /* ip */,
+				C8818DCE19BAE41A008BB355 /* osc */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C8818DC119BAE41A008BB355 /* ip */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DC219BAE41A008BB355 /* IpEndpointName.cpp */,
+				C8818DC319BAE41A008BB355 /* IpEndpointName.h */,
+				C8818DC419BAE41A008BB355 /* NetworkingUtils.h */,
+				C8818DC519BAE41A008BB355 /* PacketListener.h */,
+				C8818DC619BAE41A008BB355 /* posix */,
+				C8818DC919BAE41A008BB355 /* TimerListener.h */,
+				C8818DCA19BAE41A008BB355 /* UdpSocket.h */,
+			);
+			path = ip;
+			sourceTree = "<group>";
+		};
+		C8818DC619BAE41A008BB355 /* posix */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DC719BAE41A008BB355 /* NetworkingUtils.cpp */,
+				C8818DC819BAE41A008BB355 /* UdpSocket.cpp */,
+			);
+			path = posix;
+			sourceTree = "<group>";
+		};
+		C8818DCE19BAE41A008BB355 /* osc */ = {
+			isa = PBXGroup;
+			children = (
+				C8818DCF19BAE41A008BB355 /* MessageMappingOscPacketListener.h */,
+				C8818DD019BAE41A008BB355 /* OscException.h */,
+				C8818DD119BAE41A008BB355 /* OscHostEndianness.h */,
+				C8818DD219BAE41A008BB355 /* OscOutboundPacketStream.cpp */,
+				C8818DD319BAE41A008BB355 /* OscOutboundPacketStream.h */,
+				C8818DD419BAE41A008BB355 /* OscPacketListener.h */,
+				C8818DD519BAE41A008BB355 /* OscPrintReceivedElements.cpp */,
+				C8818DD619BAE41A008BB355 /* OscPrintReceivedElements.h */,
+				C8818DD719BAE41A008BB355 /* OscReceivedElements.cpp */,
+				C8818DD819BAE41A008BB355 /* OscReceivedElements.h */,
+				C8818DD919BAE41A008BB355 /* OscTypes.cpp */,
+				C8818DDA19BAE41A008BB355 /* OscTypes.h */,
+			);
+			path = osc;
 			sourceTree = "<group>";
 		};
 		C8D15D0F19BAA4D80078052B /* ofxSimpleSerial */ = {
@@ -255,6 +419,84 @@
 				C8D15D2919BAC8080078052B /* receive.c */,
 				C8D15D2A19BAC8080078052B /* tod.c */,
 				C8D15D2B19BAC8080078052B /* transmit.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C8DFEC6119BC40E100470EA1 /* ofxLeapMotion2 */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFECFF19BC40E300470EA1 /* libs */,
+				C8DFED1419BC40E300470EA1 /* src */,
+			);
+			name = ofxLeapMotion2;
+			path = ../../../addons/ofxLeapMotion2;
+			sourceTree = "<group>";
+		};
+		C8DFECFF19BC40E300470EA1 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0019BC40E300470EA1 /* include */,
+				C8DFED0319BC40E300470EA1 /* lib */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		C8DFED0019BC40E300470EA1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0119BC40E300470EA1 /* Leap.h */,
+				C8DFED0219BC40E300470EA1 /* LeapMath.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C8DFED0319BC40E300470EA1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0419BC40E300470EA1 /* linux */,
+				C8DFED0619BC40E300470EA1 /* osx */,
+				C8DFED0819BC40E300470EA1 /* winvs */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		C8DFED0419BC40E300470EA1 /* linux */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0519BC40E300470EA1 /* libLeap.so */,
+			);
+			path = linux;
+			sourceTree = "<group>";
+		};
+		C8DFED0619BC40E300470EA1 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0719BC40E300470EA1 /* libLeap.dylib */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		C8DFED0819BC40E300470EA1 /* winvs */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED0919BC40E300470EA1 /* Leap.dll */,
+				C8DFED0A19BC40E300470EA1 /* Leap.lib */,
+				C8DFED0B19BC40E300470EA1 /* Leapd.dll */,
+				C8DFED0C19BC40E300470EA1 /* Leapd.lib */,
+				C8DFED0D19BC40E300470EA1 /* msvcp120.dll */,
+				C8DFED0E19BC40E300470EA1 /* msvcp120d.dll */,
+				C8DFED0F19BC40E300470EA1 /* msvcr120.dll */,
+				C8DFED1019BC40E300470EA1 /* msvcr120d.dll */,
+			);
+			path = winvs;
+			sourceTree = "<group>";
+		};
+		C8DFED1419BC40E300470EA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C8DFED1519BC40E300470EA1 /* ofxLeapMotion2.cpp */,
+				C8DFED1619BC40E300470EA1 /* ofxLeapMotion2.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -384,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -f \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n";
+			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -f \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -f ../../../addons/ofxLeapMotion2/libs/lib/osx/libLeap.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libLeap.dylib\"; install_name_tool -change ./libLeap.dylib @executable_path/libLeap.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -393,14 +635,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8818DE619BAE41A008BB355 /* OscTypes.cpp in Sources */,
+				C8818DDE19BAE41A008BB355 /* ofxOscReceiver.cpp in Sources */,
+				C8818DE519BAE41A008BB355 /* OscReceivedElements.cpp in Sources */,
+				C8818DDD19BAE41A008BB355 /* ofxOscParameterSync.cpp in Sources */,
 				C8D15D2F19BAC8080078052B /* network.c in Sources */,
+				C8818DDB19BAE41A008BB355 /* ofxOscBundle.cpp in Sources */,
 				C8D15D2E19BAC8080078052B /* misc.c in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				C8D15D1319BAA4D80078052B /* ofxSimpleSerial.cpp in Sources */,
 				C8D15D3019BAC8080078052B /* receive.c in Sources */,
+				C8DFED2C19BC40E300470EA1 /* ofxLeapMotion2.cpp in Sources */,
+				C8818DDC19BAE41A008BB355 /* ofxOscMessage.cpp in Sources */,
 				C8D15D3219BAC8080078052B /* transmit.c in Sources */,
 				C8D15D3119BAC8080078052B /* tod.c in Sources */,
 				C8D15D2C19BAC8080078052B /* ofxArtnet.cpp in Sources */,
+				C8818DDF19BAE41A008BB355 /* ofxOscSender.cpp in Sources */,
+				C8818DE219BAE41A008BB355 /* UdpSocket.cpp in Sources */,
+				C8818DE119BAE41A008BB355 /* NetworkingUtils.cpp in Sources */,
+				C8818DE419BAE41A008BB355 /* OscPrintReceivedElements.cpp in Sources */,
+				C8818DE319BAE41A008BB355 /* OscOutboundPacketStream.cpp in Sources */,
+				C8818DE019BAE41A008BB355 /* IpEndpointName.cpp in Sources */,
 				C8D15D2D19BAC8080078052B /* artnet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +753,15 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					"../../../addons/ofxLeapMotion2/src/**",
+					../../../addons/ofxLeapMotion2/libs/include,
+					../../../addons/ofxLeapMotion2/libs/lib,
+					../../../addons/ofxLeapMotion2/libs/lib/osx,
+					../../../addons/ofxLeapMotion2/libs,
+				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
@@ -565,10 +829,26 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
 				);
 				PRODUCT_NAME = HeartBeatControllerDebug;
 				SDKROOT = macosx10.8;
-				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxArtnet/libs/artnet/include/;
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxLeapMotion2/libs/include/ ../../../addons/ofxArtnet/libs/artnet/include/ ../../../addons/ofxOsc/libs/oscpack/src/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -585,6 +865,15 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					src,
+					"../../../addons/ofxLeapMotion2/src/**",
+					../../../addons/ofxLeapMotion2/libs/include,
+					../../../addons/ofxLeapMotion2/libs/lib,
+					../../../addons/ofxLeapMotion2/libs/lib/osx,
+					../../../addons/ofxLeapMotion2/libs,
+				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
@@ -652,10 +941,26 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/osx,
+					/Volumes/Data,
+					HD/oF/of_v0.8.1_osx_release/addons/ofxLeapMotion2/libs/lib/winvs,
 				);
 				PRODUCT_NAME = HeartBeatController;
 				SDKROOT = macosx10.8;
-				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxArtnet/libs/artnet/include/;
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxLeapMotion2/libs/include/ ../../../addons/ofxArtnet/libs/artnet/include/ ../../../addons/ofxOsc/libs/oscpack/src/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

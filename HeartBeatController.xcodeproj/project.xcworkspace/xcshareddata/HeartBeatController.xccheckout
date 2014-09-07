@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3430F487-A72E-4DD4-A37B-92272EFEA557</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HeartBeatController</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5E72C1A4-889C-4702-92AB-08F77356EBED</key>
+		<string>https://github.com/hiroyuki/ofxArtnet.git</string>
+		<key>99426384-1293-4C15-9184-221164E8E8A7</key>
+		<string>https://github.com/LeoColomb/ofxSimpleSerial.git</string>
+		<key>AC23B6E4-9D94-4A5C-AC7F-6E3A023EDEC3</key>
+		<string>https://github.com/yasnis/HeartBeatController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HeartBeatController.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5E72C1A4-889C-4702-92AB-08F77356EBED</key>
+		<string>../../../../../addons/ofxArtnet</string>
+		<key>99426384-1293-4C15-9184-221164E8E8A7</key>
+		<string>../../../../../addons/ofxSimpleSerial</string>
+		<key>AC23B6E4-9D94-4A5C-AC7F-6E3A023EDEC3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yasnis/HeartBeatController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AC23B6E4-9D94-4A5C-AC7F-6E3A023EDEC3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AC23B6E4-9D94-4A5C-AC7F-6E3A023EDEC3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HeartBeatController</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5E72C1A4-889C-4702-92AB-08F77356EBED</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxArtnet</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>99426384-1293-4C15-9184-221164E8E8A7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxSimpleSerial</string>
+		</dict>
+	</array>
+</dict>
+</plist>
