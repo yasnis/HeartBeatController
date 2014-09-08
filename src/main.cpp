@@ -3,7 +3,6 @@
 #include <vector>
 #include "ofxArtnet.h"
 #include "ofxOsc.h"
-#include "ofxLeapMotion2.h"
 
 #define MAX_BEAT_NUM 256
 #define SYNC_TIME 70
@@ -43,10 +42,6 @@ class ofApp : public ofBaseApp{
     //OSC
     ofxOscSender sender;
     
-    //Leap Motion
-    ofxLeapMotion leap;
-    ofxLeapMotionSimpleHand hand;
-    
     //Mute
     int mute = 1;
     
@@ -76,12 +71,7 @@ class ofApp : public ofBaseApp{
         brightness = 0;
         
         //Sender
-//        sender.setup("localhost", 3331);
-//        sender.setup("192.168.11.6", 3331);
         sender.setup("10.20.24.101", 3331);
-        
-        //Leap
-        leap.open();
     }
     
     void setupSerial() {
@@ -89,13 +79,6 @@ class ofApp : public ofBaseApp{
         serial.startContinuousRead();
         ofAddListener(serial.NEW_MESSAGE,this,&ofApp::onSerialMessage);
     }
-    
-    
-    
-    
-    
-    
-    
     
     //--------------------------------------------------------------
     void update(){
@@ -106,9 +89,7 @@ class ofApp : public ofBaseApp{
         updateBeatValue();
         updateBPM();
         updateArtnet();
-//        updateLeapMotion();
         
-//        if (mute == 0) return;
         ofxOscMessage msg1,msg2;
         msg1.setAddress("/Ch1/");
         msg1.addIntArg(beat_value_a[0]*mute);
@@ -120,30 +101,8 @@ class ofApp : public ofBaseApp{
         sender.sendMessage(msg2);
     }
     
-    void updateLeapMotion() {
-        vector<ofxLeapMotionSimpleHand> hands;
-        hands = leap.getSimpleHands();
-        
-        if( leap.isFrameNew()){
-            if(hands.size() ){
-                mute = 0;
-            }else{
-                mute = 1;
-            }
-        }
-        
-        cout << "updateLeapMotion() : " << mute << ", hand : " << hands.size() << endl;
-    }
-    
     void updateArtnet() {
-//        cout << "updateArtnet : " << brightness << endl;
-//        return;
-        // 1ch
-//        dmxData[0] = 255*beat_diff[0]/4096;
-//        dmxData[0] = max(brightness,100*(beat_value_a[7]+beat_value_b[7])/4096);
         dmxData[0] = max(brightness,0)*mute;
-//        dmxData[0] = 100;
-        
         artnet.sendDmx("10.20.24.22", dmxData, 512);
     }
     
@@ -215,18 +174,10 @@ class ofApp : public ofBaseApp{
         
     }
     void checkSync(){
-//        cout << abs(old_peaktime_a-old_peaktime_b) << endl;
-//        if(abs(old_peaktime_a-old_peaktime_b) > SYNC_TIME){
-//            return;
-//        }
         cout << "sync" << endl;
         if(mute==0)return;
         
-        
-        
-        
         brightness += 255;
-//        return;
         
         ofxOscMessage msg;
         msg.setAddress("/sync");
@@ -238,8 +189,6 @@ class ofApp : public ofBaseApp{
     void updateBeatValue(){
         beat_value_a.insert(beat_value_a.begin(), currentPeak[0]);
         beat_value_b.insert(beat_value_b.begin(), currentPeak[1]);
-        
-//        cout << beat_value_a[0] << ", "  << beat_value_b[0] << endl;
         
         beat_diff.insert(beat_diff.begin(), (1024-abs(beat_value_a[0]-beat_value_b[0]))*float(beat_value_a[0])/1024.0*float(beat_value_b[0])/1024.0);
         
@@ -255,69 +204,6 @@ class ofApp : public ofBaseApp{
         
     }
     
-    /*
-     
-     
-     
-     
-     //--------------------------------------------------------------
-     void ofApp::update(){
-     video.update();
-     
-     colorImg.setFromPixels(video.getPixels(), capW, capH);
-     colorImg.convertToGrayscalePlanarImages(redImage, greenImage, blueImage);
-     
-     //Green
-     greenDiff.absDiff(greenBg, greenImage);
-     greenDiff.threshold(threshold);
-     
-     greenBg = greenImage;
-     
-     diff.insert(diff.begin(), getDiffCount(greenDiff.getPixels(), greenDiff.width*greenDiff.height));
-     if(diff.size() > 32){
-     diff.resize(32);
-     }
-     
-     long min = *min_element(diff.begin(), diff.end());
-     long max = *max_element(diff.begin(), diff.end())-min;
-     //    long average = accumulate(diff.begin(), diff.end(), 0)/diff.size()-min;
-     
-     float norm = float(diff[0])/float(max);
-     peak.insert(peak.begin(), norm);
-     
-     if(peak.size() > 16){
-     peak.resize(16);
-     }
-     int isPeak = 0;
-     if(peak[7]>0.5 && peak[7] == (*max_element(peak.begin(), peak.end()))){
-     updateBPM();
-     isPeak = 1;
-     }
-     //    cout << float(diff[0])/float(max) << " , " << isPeak << " , " << peak[7] << endl;
-     }
-     
-     void ofApp::updateBPM() {
-     unsigned long long current = ofGetElapsedTimeMillis();
-     long diff = long(current - old);
-     int b = int(60000/diff);
-     //    cout << "updateBPM : " << b << endl;
-     if(b > 30 && b < 200) {
-     bpm.insert(bpm.begin(), b);
-     if(bpm.size() > 3){
-     bpm.resize(3);
-     }
-     avarageBPM = accumulate(bpm.begin(), bpm.end(), 0)/bpm.size();
-     dispatchBPM();
-     }
-     old = current;
-     }
-    // */
-    
-    
-    
-    
-    
-    
     
     //--------------------------------------------------------------
     void draw(){
@@ -325,9 +211,7 @@ class ofApp : public ofBaseApp{
         ofSetLineWidth(1);
         ofLine(0, ofGetHeight()*7/8, ofGetWidth(), ofGetHeight()*7/8);
         ofLine(0, ofGetHeight()*7/8-ofGetHeight()/4*3, ofGetWidth(), ofGetHeight()*7/8-ofGetHeight()/4*3);
-//        ofDrawBitmapString("A : "+ofToString(beat_value_a[0]) + "\nB : "+ofToString(beat_value_b[0]), 100, 100);
         
-//        ofSetLineWidth(5);
         drawWave();
         
         ofSetColor(255);
@@ -379,23 +263,12 @@ class ofApp : public ofBaseApp{
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //--------------------------------------------------------------
     void onSerialMessage(string & message) {
         vector<string> peak = ofSplitString(message, ",");
-//        cout << "onNewMessage, message: " << message << " , " << peak.size() << endl;
         if(peak.size() == 2) {
             currentPeak[0] = ofToInt(peak[0]);
             currentPeak[1] = ofToInt(peak[1]);
-//            cout << "Channel A : " << currentPeak[0] << ", Channel B : " << currentPeak[1] << endl;
         }
         
     }
@@ -415,11 +288,7 @@ class ofApp : public ofBaseApp{
     
     void exit() {
         dmxData[0] = 0;
-        
         artnet.sendDmx("10.20.24.22", dmxData, 512);
-        
-        
-        leap.close();
     }
 };
 
